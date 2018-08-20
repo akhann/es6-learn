@@ -10,12 +10,12 @@ class Product {
 }
 
 class Order {
-    construct() {
+    constructor() {
         this.items = [];
     }
 
     add(product) {
-        item.push(product);
+        this.items.push(product);
     }
 
     showTotal() {
@@ -23,9 +23,9 @@ class Order {
     }
 
     calculateTotal() {
-        var sum = 0;
+        let sum = 0;
 
-        for (var i = 0, len = this.items; i < len; i++) {
+        for (let i = 0, len = this.items.length; i < len; i++) {
             sum += this.items[i].price;
         }
 
@@ -40,5 +40,5 @@ const order = new Order();
 order.add(product1);
 order.add(product2);
 
-showTotal();
+order.showTotal();
 
