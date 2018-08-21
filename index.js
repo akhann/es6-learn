@@ -1,18 +1,20 @@
-const Product = require('./product');
 const Order = require('./order');
+const ProductService = require('./product_service');
 
+const service = new ProductService();
+let products = [];
 
-const data = [ { name: 'Pencil', price: 14 }, { name: 'Casing', price: 17 }];
-
-setTimeout(function() {
-    const product1 = new Product(data[0].name, data[0].price);
-    const product2 = new Product(data[1].name, data[1].price);
-
+service.getList().then(function(result) {
+    products = result;
     const order = new Order();
-    order.add(product1);
-    order.add(product2);
+
+    for (var i = 0, len = products.length; i < len; i++) {
+        order.add(products[i]);
+    }
 
     order.showTotal();
-}, 400);
+}, function(err) {
+    console.log(err);
+});
 
 
