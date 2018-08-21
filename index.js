@@ -4,7 +4,7 @@ const ProductService = require('./product_service');
 const service = new ProductService();
 let products = [];
 
-service.getList().then(function(result) {
+service.getList().subscribe(function(result) {
     products = result;
     const order = new Order();
 

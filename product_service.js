@@ -1,4 +1,5 @@
 const Product = require('./product');
+const { Observable } = require('rxjs');
 
 class ProductService {
     constructor() {
@@ -9,15 +10,17 @@ class ProductService {
     }
 
     getList() {
-        return new Promise((resolve, failure) => {
-            setTimeout(() => {
+        return new Observable((observer) => {
+
+            setInterval(() => {
                 if (this.data.length > 0) {
-                    resolve(this.data);
+                    this.data[0].price += 1;
+                    observer.next(this.data);
                 }
                 else {
-                    failure('No product found.');
+                    observer.error('No product found');
                 }
-            }, 2000);
+            }, 800);
         });
     }
 }
